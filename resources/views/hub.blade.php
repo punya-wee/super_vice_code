@@ -379,7 +379,7 @@
         <div class="hub-navbar-left">
             <div class="hub-logo">🌿</div>
             <div class="hub-brand">
-                <div class="hub-brand-title">ระบบจัดการสัตตเกษตร</div>
+                <div class="hub-brand-title">ระบบจัดการเกษตร</div>
                 <div class="hub-brand-subtitle">สวัสดี, {{ auth()->user()->full_name ?? 'User' }}</div>
             </div>
         </div>

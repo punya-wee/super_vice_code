@@ -30,21 +30,26 @@ class ScheduleController extends Controller
     {
         $v = $request->validate([
             'title' => 'required|string|max:150',
-            'product_id' => 'nullable|integer',
+            'category' => 'nullable|string|max:100',
+            'area' => 'nullable|numeric|min:0',
+            'expected_yield' => 'nullable|numeric|min:0',
+            'status' => 'required|string|max:50',
             'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
+            'end_date' => 'required|date|after_or_equal:start_date',
             'notes' => 'nullable|string',
         ], [
             'title.required' => 'กรุณากรอกชื่อพืช/งาน',
             'start_date.required' => 'กรุณากรอกวันเริ่มต้น',
             'end_date.required' => 'กรุณากรอกวันสิ้นสุด',
-            'end_date.after' => 'วันสิ้นสุดต้องหลังวันเริ่มต้น',
         ]);
 
         DB::table('schedules')->insert([
             'workspace_id' => $this->wsId(),
-            'product_id' => $v['product_id'] ?? null,
             'title' => $v['title'],
+            'category' => $v['category'] ?? null,
+            'area' => $v['area'] ?? null,
+            'expected_yield' => $v['expected_yield'] ?? null,
+            'status' => $v['status'],
             'start_date' => $v['start_date'],
             'end_date' => $v['end_date'],
             'notes' => $v['notes'] ?? null,
@@ -68,15 +73,21 @@ class ScheduleController extends Controller
 
         $v = $request->validate([
             'title' => 'required|string|max:150',
-            'product_id' => 'nullable|integer',
+            'category' => 'nullable|string|max:100',
+            'area' => 'nullable|numeric|min:0',
+            'expected_yield' => 'nullable|numeric|min:0',
+            'status' => 'required|string|max:50',
             'start_date' => 'required|date',
-            'end_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
             'notes' => 'nullable|string',
         ]);
 
         DB::table('schedules')->where('id', $id)->update([
             'title' => $v['title'],
-            'product_id' => $v['product_id'] ?? null,
+            'category' => $v['category'] ?? null,
+            'area' => $v['area'] ?? null,
+            'expected_yield' => $v['expected_yield'] ?? null,
+            'status' => $v['status'],
             'start_date' => $v['start_date'],
             'end_date' => $v['end_date'],
             'notes' => $v['notes'] ?? null,

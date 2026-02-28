@@ -97,13 +97,18 @@ class DashboardController extends Controller
             ->map(function ($s) use ($today) {
                 $start = Carbon::parse($s->start_date);
                 $end = Carbon::parse($s->end_date);
-                if ($start->gt($today))
-                    $s->status = 'วางแผนแล้ว';
-                elseif ($end->lt($today))
+
+                // ใช้สถานะจาก DB แต่เมื่อถึงเวลาสิ้นสุด (ผ่าน end_date ไปแล้ว) ให้นับว่าเก็บเกี่ยวแล้วอัตโนมัติ
+                $dbStatus = $s->status ?? 'วางแผนแล้ว';
+                if ($dbStatus !== 'เก็บเกี่ยวแล้ว' && (clone $end)->startOfDay()->lt($today)) {
                     $s->status = 'เก็บเกี่ยวแล้ว';
-                else
-                    $s->status = 'กำลังปลูก';
-                $s->days_left = $today->diffInDays($end, false);
+                    // อัปเดต DB แบบเงียบๆ เพื่อให้ข้อมูลตรงกัน (ทางเลือก)
+                    DB::table('schedules')->where('id', $s->id)->update(['status' => 'เก็บเกี่ยวแล้ว']);
+                } else {
+                    $s->status = $dbStatus;
+                }
+
+                $s->days_left = max(0, $today->diffInDays($end, false));
                 $s->start_date_fmt = $start->locale('th')->isoFormat('D MMM YYYY');
                 $s->end_date_fmt = $end->locale('th')->isoFormat('D MMM YYYY');
                 return $s;
