@@ -1,0 +1,222 @@
+:root {
+    --primary-green: #22C55E;
+    --light-green: #F0FDF4;
+    --text-dark: #1F2937;
+    --text-gray: #6B7280;
+    --bg-body: #F8FAFC;
+}
+
+body {
+    background: var(--bg-body);
+    margin: 0;
+    font-family: 'Sarabun', sans-serif;
+    color: var(--text-dark);
+}
+
+/* Navbar */
+.profile-navbar {
+    background: white;
+    padding: 0.75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brand-logo {
+    width: 32px;
+    height: 32px;
+    background: var(--light-green);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-green);
+}
+
+.logout-link {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Container Layout */
+.profile-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Main Content Grid */
+.profile-grid-top {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    border: 1px solid #f1f5f9;
+}
+
+/* Left Side: Avatar Card */
+.profile-avatar-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: var(--light-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    color: var(--primary-green);
+    margin-bottom: 1.5rem;
+    border: 2px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.profile-info-text h2 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.profile-info-text p {
+    color: var(--text-gray);
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+}
+
+/* Right Side: Form Card */
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.btn-edit-inline {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    background: #fcfcfc;
+    box-sizing: border-box;
+}
+
+/* Bottom Stats Section */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 1px solid #f1f5f9;
+}
+
+/* Custom Colors for Stats */
+.stat-blue {
+    background: #F0F7FF;
+}
+
+.stat-green {
+    background: #F0FDF4;
+}
+
+.stat-purple {
+    background: #FAF5FF;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+/* Security Section */
+.security-card {
+    margin-top: 1.5rem;
+    background: #FFF7ED;
+    border: 1px solid #FED7AA;
+    border-radius: 16px;
+    padding: 1.5rem;
+}
+
+.security-title {
+    font-weight: 700;
+    color: #9A3412;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.security-warning {
+    color: #C2410C;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.warning-text-red {
+    color: #DC2626;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+@media (max-width: 850px) {
+    .profile-grid-top,
+    .stats-section {
+        grid-template-columns: 1fr;
+    }
+}
